@@ -8,10 +8,29 @@ function verificar_entrada($entrada)
     $saida = htmlspecialchars($saida);
     return $saida;
 }
-if (
+
+if(isset($_POST['action']) &&
+    $_POST['action'] == 'login'){
+     //Verificação e login do Usuario
+    $nomeUsuario = verificar_entrada($_POST['nomeUsuario']);
+    $senhaUsuario = verificar_entrada($_POST['senhaUsuario']);
+    $senha = sha1($senhaUsuario);
+    //Para testar
+    $sql = $conecta->prepare("SELECT * FROM usuario WHERE nomeUsuario = ? AND senha = ?");
+    $sql->bind_param("ss", $nomeUsuario, $senha);
+    $sql->execute();
+
+    $busca = $sql->fetch();
+    if($busca != null){
+        echo "Usuário e senha conferem!";
+    }else{
+        echo "usário e senha não conferem!";
+    }
+
+}else if (
     isset($_POST['action']) &&
-    $_POST['action'] == 'cadastro'
-) {
+    $_POST['action'] == 'cadastro') {
+    //Cadastro de um novo Usuario    
     //Pegar os campos do formulário
     $nomeCompleto = verificar_entrada($_POST['nomeCompleto']);
     $nomeUsuario = verificar_entrada($_POST['nomeUsuário']);
@@ -31,7 +50,7 @@ if (
     } else {
         //echo "<h5> senha codificada: $senha</h5>";
         //Verificar se o úsuario já existe no banco de dados
-        $sql = $conecta->prepare("SELECT nomeUsuario, senha FROM usuario WHERE nomeUsuario = ? OR email = ?");
+        $sql = $conecta->prepare("SELECT nomeUsuario, email FROM usuario WHERE nomeUsuario = ? OR email = ?");
         //substitui cada ? por string abaixo
         $sql->bind_param("ss",$nomeUsuario, $emailUsuario);
         $sql->execute();
