@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 if (isset($_SESSION['nomeUsuario']))
     //Bloqueando usuários logados    
@@ -98,14 +97,15 @@ if (isset($_SESSION['nomeUsuario']))
                     </div>
 
                     <div class="form-group">
+                        <input type="url" name="urlAvatar" id="urlAvatar" class="form-control" placeholder="URL para imagem do seu perfil" required>
+                    </div>
+
+                    <div class="form-group">
                         <input type="password" name="senhaUsuário" id="senhaUsuário" class="form-control" placeholder="Digite sua senha" minlength="6" required>
                     </div>
 
                     <div class="form-group">
                         <input type="password" name="senhaConfirma" id="senhaConfirma" class="form-control" placeholder="Confirme a sua senha" required minlength="6">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="URL Do Avatar" id="Avatar" class="form-control" placeholder="URl Do Avatar" minlength="5" required>
                     </div>
 
                     <div class="form-group mt-5">
