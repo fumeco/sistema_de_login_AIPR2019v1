@@ -104,6 +104,9 @@ if (isset($_SESSION['nomeUsuario']))
                     <div class="form-group">
                         <input type="password" name="senhaConfirma" id="senhaConfirma" class="form-control" placeholder="Confirme a sua senha" required minlength="6">
                     </div>
+                    <div class="form-group">
+                        <input type="text" name="URL Do Avatar" id="Avatar" class="form-control" placeholder="URl Do Avatar" minlength="5" required>
+                    </div>
 
                     <div class="form-group mt-5">
                         <div class="custom-control custom-checkbox">
